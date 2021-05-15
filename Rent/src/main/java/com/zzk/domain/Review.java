@@ -19,7 +19,6 @@ public class Review {
     public void setApply(String apply) {
         this.apply = apply;
     }
-
     @Override
     public String toString() {
         return "Review{" +
