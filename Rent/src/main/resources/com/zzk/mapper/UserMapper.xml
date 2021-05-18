@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzk.mapper.UserMapper">
+
+    <insert id="save" parameterType="user">
+        insert into user values
+        (#{username},#{password},#{name},#{id},#{sex},#{age},#{phone},#{auth})
+    </insert>
+
+    <select id="ifExist" resultType="user">
+        select * from user where username=#{username} and password=#{password} and name=#{name} and id=#{id} and sex=#{sex}
+                             and age=#{age} and phone=#{phone} and auth=#{auth};
+    </select>
+
+</mapper>
