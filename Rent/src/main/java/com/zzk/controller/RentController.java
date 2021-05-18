@@ -21,7 +21,9 @@ public class RentController {
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Rent account){
+        System.out.println(account);
         rentService.save(account);
+
         return "保存成功";
     }
 

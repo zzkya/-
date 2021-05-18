@@ -5,7 +5,7 @@
 
     <insert id="save" parameterType="rent">
         insert into rent values
-            (#{id},#{username},#{location},#{expectedPrice},#{expectedInformation},#{time})
+            (#{id},#{username},#{location},#{price},#{information},#{mark},#{time})
     </insert>
 
     <select id="findAll" resultType="rent">
