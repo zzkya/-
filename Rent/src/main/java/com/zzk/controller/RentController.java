@@ -23,7 +23,6 @@ public class RentController {
     public String save(Rent account){
         System.out.println(account);
         rentService.save(account);
-
         return "保存成功";
     }
 
