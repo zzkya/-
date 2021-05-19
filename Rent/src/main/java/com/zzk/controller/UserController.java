@@ -4,12 +4,13 @@ package com.zzk.controller;
 import com.zzk.domain.Rent;
 import com.zzk.domain.User;
 import com.zzk.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,22 +23,30 @@ public class UserController {
     @RequestMapping(value = "/register",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(User user){
-        try {
-            userService.save(user);
-        }
-        catch (Exception e){
-            return "no";
-        }
-        return "成功";
+        userService.save(user);
+        user.setAuth(2);
+        System.out.println(user);
+        return "1";
     }
 
     @RequestMapping("/login")
-    public ModelAndView login(User user){
-        boolean ifExist = userService.ifExist(user);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("ifExist",ifExist);
-        modelAndView.setViewName("login");
-        return modelAndView;
+    @ResponseBody
+    public int login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
+//        System.out.println(username + " " + password);
+        httpSession.setAttribute("username",username);
+        return userService.ifExist(username,password)==null?0:1;
     }
 
+    @RequestMapping("/checkUser")
+    @ResponseBody
+    public int check(@RequestParam("username")  String username){
+//        System.out.println(username + " " + password);
+        return userService.ifUser(username)==null?1:0;
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpSession httpSession){
+        httpSession.invalidate();
+        return "redirect:login";
+    }
 }

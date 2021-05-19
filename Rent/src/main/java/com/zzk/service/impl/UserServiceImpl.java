@@ -18,7 +18,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean ifExist(User user) {
-        return userMapper.ifExist(user);
+    public User ifExist(String username, String password) {
+        return userMapper.ifExist(username,password);
+    }
+
+    @Override
+    public User ifUser(String username) {
+        return userMapper.ifUser(username);
     }
 }

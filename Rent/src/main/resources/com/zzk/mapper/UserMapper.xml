@@ -9,8 +9,12 @@
     </insert>
 
     <select id="ifExist" resultType="user">
-        select * from user where username=#{username} and password=#{password} and name=#{name} and id=#{id} and sex=#{sex}
-                             and age=#{age} and phone=#{phone} and auth=#{auth};
+        select * from user where username=#{username} and password=#{password};
     </select>
+
+    <select id="ifUser" resultType="user">
+        select * from user where username=#{username};
+    </select>
+
 
 </mapper>

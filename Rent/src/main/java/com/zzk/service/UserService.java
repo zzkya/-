@@ -1,10 +1,13 @@
 package com.zzk.service;
 
 import com.zzk.domain.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserService {
 
     public void save(User user);
 
-    public boolean ifExist(User user);
+    public User ifExist(String username, String password);
+
+    public User ifUser(String username);
 }
