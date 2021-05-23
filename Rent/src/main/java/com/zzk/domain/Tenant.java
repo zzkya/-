@@ -5,9 +5,18 @@ import java.util.Date;
 public class Tenant {
     int id;
     String username;
+    String location;
     int expectedPrice;
     String expectedInformation;
     Date time;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public int getId() {
         return id;
@@ -54,6 +63,7 @@ public class Tenant {
         return "Tenant{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", location='" + location + '\'' +
                 ", expectedPrice=" + expectedPrice +
                 ", expectedInformation='" + expectedInformation + '\'' +
                 ", time=" + time +
