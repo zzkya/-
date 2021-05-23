@@ -16,5 +16,8 @@
         select * from user where username=#{username};
     </select>
 
+    <update id="changeAuth">
+        update user set auth=#{auth} where username=#{username}
+    </update>
 
 </mapper>

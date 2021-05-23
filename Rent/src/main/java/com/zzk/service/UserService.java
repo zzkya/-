@@ -10,4 +10,6 @@ public interface UserService {
     public User ifExist(String username, String password);
 
     public User ifUser(String username);
+
+    public void changeAuth(int auth,String username);
 }

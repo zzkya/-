@@ -1,4 +1,4 @@
-package com.zzk.service.impl;
+package com.zzk.service.impl.impl;
 
 import com.zzk.domain.User;
 import com.zzk.mapper.UserMapper;
@@ -25,5 +25,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User ifUser(String username) {
         return userMapper.ifUser(username);
+    }
+
+    @Override
+    public void changeAuth(int auth, String username) {
+        userMapper.changeAuth(auth,username);
     }
 }

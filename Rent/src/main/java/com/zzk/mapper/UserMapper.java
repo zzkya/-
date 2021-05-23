@@ -10,5 +10,7 @@ public interface UserMapper {
     public User ifExist(@Param("username")String username, @Param("password")String password);
 
     public User ifUser(@Param("username")String username);
-//    public boolean if
+
+    public void changeAuth(@Param("auth")int auth,@Param("username")String username);
+
 }
