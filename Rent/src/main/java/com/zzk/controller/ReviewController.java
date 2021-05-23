@@ -2,6 +2,7 @@ package com.zzk.controller;
 
 import com.zzk.domain.Review;
 import com.zzk.service.ReviewService;
+import com.zzk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
@@ -41,7 +45,7 @@ public class ReviewController {
     @RequestMapping("/del")
     public void del(@RequestParam("username") String username){
         reviewService.del(username);
-
+        userService.changeAuth(3,username);
     }
 
 }
