@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzk.mapper.ReviewMapper">
+
+    <insert id="save" parameterType="review">
+        insert into user values
+        (#{username},#{apply})
+    </insert>
+
+    <select id="findAll" resultType="review">
+        select * from review
+    </select>
+
+    <delete id="del">
+        delete * from review where username=#{username}
+    </delete>
+
+
+
+
+</mapper>
