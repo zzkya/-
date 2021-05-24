@@ -2,17 +2,17 @@
 所有的租房信息
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../layout.jsp"%>
+<%@ include file="layout.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>租房信息</title>
-    <link rel="stylesheet" href="../../layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
 <body>
 <table id="RentIn" ></table>
 
-<script src="../../layui/layui.js"></script>
+<script src="layui/layui.js"></script>
 <script>
     <%--var list = ${rentList}--%>
     <%--console.log(list)--%>

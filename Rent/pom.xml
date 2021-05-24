@@ -185,7 +185,58 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+
+        <!--<dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
+
+        &lt;!&ndash; https://mvnrepository.com/artifact/commons-collections/commons-collections &ndash;&gt;
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+
+        &lt;!&ndash; https://mvnrepository.com/artifact/commons-lang/commons-lang &ndash;&gt;
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
+        &lt;!&ndash; https://mvnrepository.com/artifact/commons-logging/commons-logging &ndash;&gt;
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+
+        &lt;!&ndash; https://mvnrepository.com/artifact/net.sf.ezmorph/ezmorph &ndash;&gt;
+        <dependency>
+            <groupId>net.sf.ezmorph</groupId>
+            <artifactId>ezmorph</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+
+&lt;!&ndash;         https://mvnrepository.com/artifact/net.sf.json-lib/json-lib&ndash;&gt;
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk18</classifier>
+        </dependency>-->
+
     </dependencies>
+
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

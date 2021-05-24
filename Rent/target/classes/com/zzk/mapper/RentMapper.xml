@@ -9,7 +9,7 @@
     </insert>
 
     <select id="findAll" resultType="rent">
-        select * from rent;
+        select * from rent limit #{start},#{limit}
     </select>
 
     <select id="findByLocation" resultType="rent">

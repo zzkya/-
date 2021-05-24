@@ -46,7 +46,7 @@
                 type:'get',
                 success:function (data) {
                     if (data == 1){
-                        location.href = "../index.jsp";
+                        location.href = "menu.jsp";
                     }else{
                         layer.msg('登录名或密码错误');
                     }

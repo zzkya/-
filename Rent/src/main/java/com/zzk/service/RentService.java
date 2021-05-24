@@ -9,7 +9,7 @@ public interface RentService {
 
     public void save(Rent rent);
 
-    public List<Rent> findAll();
+    public List<Rent> findAll(int start,int limit);
 
     public List<Rent> findByLocation(String location);
 }

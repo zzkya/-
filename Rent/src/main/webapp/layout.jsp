@@ -18,8 +18,8 @@
                 <i class="layui-icon layui-icon-spread-left"></i>
             </li>
             <li class="layui-nav-item layui-hide-xs"><a href="menu.jsp">首 页</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="/rent/findAll">租房信息</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="WEB-INF/pages/rent-out-msg.jsp">出租信息</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="rent-in-msg.jsp">租房信息</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="rent-out-msg.jsp">出租信息</a></li>
             <li class="layui-nav-item layui-hide-xs"><a href="search.jsp">按关键字查询</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">留言板</a>
