@@ -20,4 +20,5 @@
         update user set auth=#{auth} where username=#{username}
     </update>
 
+
 </mapper>

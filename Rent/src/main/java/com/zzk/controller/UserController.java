@@ -34,7 +34,10 @@ public class UserController {
     public int login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
 //        System.out.println(username + " " + password);
         httpSession.setAttribute("username",username);
-        return userService.ifExist(username,password)==null?0:1;
+        User user = userService.ifExist(username, password);
+        if(user==null) return 0;
+        httpSession.setAttribute("auth",user.getAuth());
+        return 1;
     }
 
     @RequestMapping("/checkUser")
@@ -44,9 +47,20 @@ public class UserController {
         return userService.ifUser(username)==null?1:0;
     }
 
-    @RequestMapping("logout")
+    @RequestMapping("/logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
         return "redirect:login";
     }
+
+    @RequestMapping("/user-center")
+    public ModelAndView userCenter(HttpSession httpSession){
+        String username = (String) httpSession.getAttribute("username");
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.ifUser(username);
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("userCenter");
+        return modelAndView;
+    }
+
 }
