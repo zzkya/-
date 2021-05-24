@@ -1,17 +1,15 @@
 package com.zzk.controller;
 
 
-import com.zzk.domain.Rent;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zzk.domain.User;
 import com.zzk.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -29,10 +27,15 @@ public class UserController {
         return "1";
     }
 
+    @RequestMapping("/login2")
+    public String login2(){
+        return "redirect:/login.jsp";
+    }
+
     @RequestMapping("/login")
     @ResponseBody
     public int login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
-//        System.out.println(username + " " + password);
+        //System.out.println(username + " " + password);
         httpSession.setAttribute("username",username);
         User user = userService.ifExist(username, password);
         if(user==null) return 0;
@@ -50,17 +53,25 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
-        return "redirect:login";
+        return "/WEB-INF/login.jsp";
     }
 
-    @RequestMapping("/user-center")
-    public ModelAndView userCenter(HttpSession httpSession){
+    @RequestMapping(value = "/userCenter",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String userCenter(HttpSession httpSession) throws JsonProcessingException {
         String username = (String) httpSession.getAttribute("username");
-        ModelAndView modelAndView = new ModelAndView();
         User user = userService.ifUser(username);
-        modelAndView.addObject("user",user);
-        modelAndView.setViewName("userCenter");
-        return modelAndView;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(user);
+//        System.out.println(json);
+        return json;
     }
 
+    @RequestMapping("/change")
+    @ResponseBody
+    public int change(User user){
+        System.out.println(user);
+        userService.change(user);
+        return 1;
+    }
 }

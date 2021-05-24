@@ -20,5 +20,9 @@
         update user set auth=#{auth} where username=#{username}
     </update>
 
+    <update id="change" parameterType="user">
+        update user set password=#{password},name=#{name},id=#{id},sex=#{sex},age=#{age},phone=#{phone}
+            where username=#{username}
+    </update>
 
 </mapper>

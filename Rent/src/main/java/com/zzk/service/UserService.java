@@ -12,4 +12,6 @@ public interface UserService {
     public User ifUser(String username);
 
     public void changeAuth(int auth,String username);
+
+    public void change(User user);
 }

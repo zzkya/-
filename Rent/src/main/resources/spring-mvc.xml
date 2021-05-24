@@ -8,11 +8,14 @@
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+
+    <!-- mvc注解驱动-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
 <!--  组件扫描 扫描controller-->
     <context:component-scan base-package="com.zzk.controller"></context:component-scan>
 
-<!-- mvc注解驱动-->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:view-controller path="/" view-name="redirect:/user/login2" />
 
 <!-- 内部资源视图解析器-->
     <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

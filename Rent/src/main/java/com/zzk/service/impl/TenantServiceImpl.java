@@ -1,4 +1,4 @@
-package com.zzk.service.impl.impl;
+package com.zzk.service.impl;
 
 import com.zzk.domain.Tenant;
 import com.zzk.mapper.TenantMapper;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("rentService")
+@Service("tenantService")
 public class TenantServiceImpl implements TenantService {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.zzk.service.impl.impl;
+package com.zzk.service.impl;
 
 import com.zzk.domain.Rent;
 import com.zzk.mapper.RentMapper;

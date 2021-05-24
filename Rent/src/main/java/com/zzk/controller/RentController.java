@@ -1,6 +1,8 @@
 package com.zzk.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zzk.domain.Rent;
 import com.zzk.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +33,14 @@ public class RentController {
     }
 
     @RequestMapping("/findAll")
-    public ModelAndView findAll(){
+    public ModelAndView findAll() throws JsonProcessingException {
         List<Rent> rentList = rentService.findAll();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("rentList",rentList);
-        modelAndView.setViewName("rentList");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(rentList);
+        modelAndView.addObject("rentList",json);
+        modelAndView.setViewName("rent-in-msg");
+        System.out.println(json);
         return modelAndView;
     }
 
