@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>求租信息</title>
+    <title>已发布的求租信息</title>
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
 <body>
@@ -14,16 +14,8 @@
 <div class="layui-body">
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
-        <legend>求租信息</legend>
+        <legend>已发布的求租信息</legend>
     </fieldset>
-<%--    搜索框--%>
-    <div class="demoTable">
-        搜索location：
-        <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
-        </div>
-        <button class="layui-btn" data-type="reload">搜索</button>
-    </div>
 
     <table id="RentIn" ></table>
 
@@ -52,28 +44,6 @@
                     ,{field: 'expectedInformation', title: '房型', width: 80}
                     ,{field: 'time', title: '发布时间', width: 80, sort: true}
                 ]]
-                ,id:'testReload'
-            });
-            var $ = layui.$, active = {
-                reload: function(){
-                    var demoReload = $('#demoReload');
-
-                    //执行重载
-                    table.reload('testReload', {
-                        page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                        ,where: {
-                            key: {
-                                id: demoReload.val()
-                            }
-                        }
-                    });
-                }
-            };
-            $('.demoTable .layui-btn').on('click', function(){
-                var type = $(this).data('type');
-                active[type] ? active[type].call(this) : '';
             });
         });
     </script>

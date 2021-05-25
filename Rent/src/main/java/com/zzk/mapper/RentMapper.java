@@ -13,5 +13,7 @@ public interface RentMapper {
 
     public List<Rent> findByLocation(@Param("location")String location);
 
+    public List<Rent> findByUser(@Param("username")String username);
+
     public List<Rent> findAll2();
 }

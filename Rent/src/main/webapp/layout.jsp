@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -18,7 +18,7 @@
                 <i class="layui-icon layui-icon-spread-left"></i>
             </li>
             <li class="layui-nav-item layui-hide-xs"><a href="menu.jsp">首 页</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="rent-in-msg.jsp">租房信息</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="rent-in-msg.jsp">求租信息</a></li>
             <li class="layui-nav-item layui-hide-xs"><a href="rent-out-msg.jsp">出租信息</a></li>
             <li class="layui-nav-item layui-hide-xs"><a href="search.jsp">按关键字查询</a></li>
             <li class="layui-nav-item">
@@ -33,12 +33,11 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a href="javascript:;">
-                    <img src="/img/person.jpg" class="layui-nav-img">
+                    <img src="img/person.jpg" class="layui-nav-img">
                     ${sessionScope.username}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="person.jsp">个人中心</a></dd>
-                    <dd><a href="alter.jsp">修改信息</a></dd>
                     <dd><a href="sign_out.jsp">退出登录</a></dd>
                 </dl>
             </li>
@@ -75,7 +74,7 @@
         底部固定区域
     </div>
 </div>
-<script src="/layui/layui.js"></script>
+<script src="layui/layui.js"></script>
 <script>
     //JS
     layui.use(['element', 'layer', 'util'], function(){

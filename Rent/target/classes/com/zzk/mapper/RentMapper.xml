@@ -12,8 +12,16 @@
         select * from rent limit #{start},#{limit}
     </select>
 
+    <select id="findAll2" resultType="rent">
+        select * from rent
+    </select>
+
+    <select id="findByUser" resultType="rent">
+        select * from rent where username='${username}'
+    </select>
+    
     <select id="findByLocation" resultType="rent">
-        select * from rent where location=#{location};
+        select * from rent where location='#{location}'
     </select>
 
 </mapper>

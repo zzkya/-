@@ -9,13 +9,19 @@
     </insert>
 
     <select id="findAll" resultType="tenant">
-        select * from tenant;
+        select * from tenant limit #{start},#{limit}
+    </select>
+
+    <select id="findAll2" resultType="tenant">
+        select * from tenant
     </select>
 
     <select id="findByLocation" resultType="tenant">
-        select * from tenant where location=#{location};
+        select * from tenant where location='#{location}';
     </select>
-    
-    <select id=""
+
+    <select id="findByUser" resultType="tenant">
+        select * from tenant where username='${username}'
+    </select>
 
 </mapper>

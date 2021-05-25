@@ -5,12 +5,15 @@
 
     <typeAliases>
         <package name="com.zzk.domain"/>
-<!--        <typeAlias type="com.zzk.domain.Account" alias="account"></typeAlias>-->
+        <!--        <typeAlias type="com.zzk.domain.Account" alias="account"></typeAlias>-->
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="reasonable" value="true"></property>
+        </plugin>
+    </plugins>
 
-    <mappers>
-        <package name="com.zzk.mapper"/>
-    </mappers>
 
 </configuration>

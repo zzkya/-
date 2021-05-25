@@ -30,8 +30,9 @@
 
     <!-- 配置sessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"></property>
         <property name="configLocation" value="classpath:sqlMapConfig-spring.xml"></property>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:com/zzk/mapper/*.xml"></property>
     </bean>
 
 <!-- 扫描mapper包-->

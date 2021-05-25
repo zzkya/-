@@ -4,6 +4,7 @@ package com.zzk.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
 import com.zzk.domain.Rent;
 import com.zzk.service.RentService;
 import org.apache.ibatis.annotations.Param;
@@ -49,11 +50,34 @@ public class RentController {
     }
 
     @RequestMapping("/findByLocation")
-    public ModelAndView findByLocation(@RequestParam("location")  String location){
+    @ResponseBody
+    public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,@RequestParam("location")  String location) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
         List<Rent> rentList = rentService.findByLocation(location);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("rentList",rentList);
-        modelAndView.setViewName("rentList");
-        return modelAndView;
+        PageHelper.startPage(start,pageSize);
+        List<Rent> rentList2 = rentService.findByLocation(location);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(rentList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
     }
+
+    @RequestMapping(value = "/findByUser",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String findByUser(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+        String username = (String) httpSession.getAttribute("username");
+        List<Rent> rentList = rentService.findByUser(username);
+        PageHelper.startPage(start,pageSize);
+        List<Rent> rentList2 = rentService.findByUser(username);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(rentList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
+    }
+
 }

@@ -34,4 +34,9 @@ public class RentServiceImpl implements RentService {
     public List<Rent> findByLocation(String location) {
         return rentMapper.findByLocation(location);
     }
+
+    @Override
+    public List<Rent> findByUser(String username) {
+        return rentMapper.findByUser(username);
+    }
 }
