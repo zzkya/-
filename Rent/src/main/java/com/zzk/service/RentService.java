@@ -11,5 +11,7 @@ public interface RentService {
 
     public List<Rent> findAll(int start,int limit);
 
+    public List<Rent> findAll2();
+
     public List<Rent> findByLocation(String location);
 }

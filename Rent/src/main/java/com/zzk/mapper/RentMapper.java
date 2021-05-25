@@ -12,4 +12,6 @@ public interface RentMapper {
     public List<Rent> findAll(@Param("start")int start,@Param("limit")int limit);
 
     public List<Rent> findByLocation(@Param("location")String location);
+
+    public List<Rent> findAll2();
 }

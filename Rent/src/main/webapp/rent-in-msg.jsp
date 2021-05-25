@@ -21,7 +21,7 @@
         //第一个实例
         table.render({
             elem: '#RentIn'
-            ,url: '/rent/findAll' //数据接口
+            ,url: '/tenant/findAll' //数据接口
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
                 //,curr: 5 //设定初始在第 5 页

@@ -15,5 +15,7 @@
     <select id="findByLocation" resultType="tenant">
         select * from tenant where location=#{location};
     </select>
+    
+    <select id=""
 
 </mapper>

@@ -40,9 +40,10 @@ public class RentController {
         int start=Integer.parseInt(page);
         int pageSize=Integer.parseInt(limit);
         List<Rent> rentList = rentService.findAll((start-1)*pageSize,pageSize);
+        List<Rent> rentList2 = rentService.findAll2();
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(rentList);
-        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList2.size()+",\"data\":"+json+"}";
         System.out.println(books);
         return books;
     }

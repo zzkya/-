@@ -26,6 +26,11 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
+    public List<Rent> findAll2() {
+        return rentMapper.findAll2();
+    }
+
+    @Override
     public List<Rent> findByLocation(String location) {
         return rentMapper.findByLocation(location);
     }

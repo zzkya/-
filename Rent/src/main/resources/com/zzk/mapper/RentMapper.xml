@@ -12,6 +12,10 @@
         select * from rent limit #{start},#{limit}
     </select>
 
+    <select id="findAll2" resultType="rent">
+        select * from rent
+    </select>
+
     <select id="findByLocation" resultType="rent">
         select * from rent where location=#{location};
     </select>
