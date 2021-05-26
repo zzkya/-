@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -28,37 +29,64 @@ public class TenantController {
     public String save(Tenant tenant, HttpSession httpSession){
         String username = (String) httpSession.getAttribute("username");
         tenant.setUsername(username);
-        System.out.println(tenant);
+//        tenant.setTime(new Date());
         tenantService.save(tenant);
-        return "保存成功";
+        System.out.println(tenant);
+        return "1";
     }
 
     @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String findAll(@RequestParam("page")String page,@RequestParam("limit")String limit) throws JsonProcessingException{
+    public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,String location) throws JsonProcessingException {
         int start=Integer.parseInt(page);
         int pageSize=Integer.parseInt(limit);
-        List<Tenant> tenantList = tenantService.findAll((start - 1) * pageSize, pageSize);
-        List<Tenant> tenantList2 = tenantService.findAll2();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(tenantList);
-        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+tenantList2.size()+",\"data\":"+json+"}";
-        System.out.println(books);
-        return books;
-    }
-
-    @RequestMapping(value = "/findByLocation",produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String findByLocation(@RequestParam("location")String location,@RequestParam("page")String page,@RequestParam("limit")String limit) throws JsonProcessingException{
-        int start=Integer.parseInt(page);
-        int pageSize=Integer.parseInt(limit);
-        List<Tenant> tenantList = tenantService.findByLocation(location);
-        PageHelper.startPage(start,pageSize);
-        List<Tenant> tenantList2 = tenantService.findByLocation(location);
+        List<Tenant> tenantList,tenantList2;
+        if(location==null){
+            tenantList = tenantService.findAll((start-1)*pageSize,pageSize);
+            tenantList2 = tenantService.findAll2();
+        }else{
+            System.out.println(location);
+            tenantList = tenantService.findByLocation(location);
+            PageHelper.startPage(start,pageSize);
+            tenantList2 = tenantService.findByLocation(location);
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(tenantList2);
         String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+tenantList.size()+",\"data\":"+json+"}";
         System.out.println(books);
         return books;
+    }
+
+    @RequestMapping(value = "/findByUser",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String findByUser(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+        String username = (String) httpSession.getAttribute("username");
+        List<Tenant> tenantList,tenantList2;
+        tenantList = tenantService.findByUser(username);
+        PageHelper.startPage(start,pageSize);
+        tenantList2 = tenantService.findByUser(username);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(tenantList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+tenantList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
+    }
+
+    @RequestMapping(value = "/changePrice",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String changePrice(@RequestParam("expectedPrice")String expectedPrice,@RequestParam("id")String index){
+        tenantService.change(Integer.parseInt(index),Integer.parseInt(expectedPrice));
+        System.out.println(index+" "+expectedPrice);
+        return "1";
+    }
+
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public String del(@RequestParam("id")int id){
+        System.out.println(id);
+        tenantService.del(id);
+        return "1";
     }
 }
