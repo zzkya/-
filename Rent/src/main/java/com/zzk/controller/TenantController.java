@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class TenantController {
         String username = (String) httpSession.getAttribute("username");
         tenant.setUsername(username);
 //        tenant.setTime(new Date());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        tenant.setTime(df.format(new Date()));
         tenantService.save(tenant);
         System.out.println(tenant);
         return "1";

@@ -39,4 +39,14 @@ public class TenantServiceImpl implements TenantService {
     public List<Tenant> findByUser(String username) {
         return tenantMapper.findByUser(username);
     }
+
+    @Override
+    public void change(int id, int price) {
+        tenantMapper.change(id,price);
+    }
+
+    @Override
+    public void del(int id) {
+        tenantMapper.del(id);
+    }
 }

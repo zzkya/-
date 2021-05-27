@@ -20,14 +20,6 @@
     <form class="layui-form layui-form-pane" action="" lay-filter="example">
 
         <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input type="text" name="username"  autocomplete="off"  class="layui-input">
-            </div>
-        </div>
-
-
-        <div class="layui-form-item">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-block">
                 <input type="text" name="location"  autocomplete="off"  class="layui-input">
@@ -37,21 +29,27 @@
         <div class="layui-form-item">
             <label class="layui-form-label">价格</label>
             <div class="layui-input-block">
-                <input type="text" name="eprice"  autocomplete="off"  class="layui-input">
+                <input type="text" name="price"  autocomplete="off"  class="layui-input">
             </div>
         </div>
-
 
         <div class="layui-form-item">
             <label class="layui-form-label">房型</label>
             <div class="layui-input-block">
-                <input type="text" name="einformation"  autocomplete="off"  class="layui-input">
+                <select name="information" lay-filter="aihao">
+                    <option value="一室一厅">一室一厅</option>
+                    <option value="两室一厅">两室一厅</option>
+                    <option value="三室一厅">三室一厅</option>
+                    <option value="三室两厅">三室两厅</option>
+                    <option value="别墅">别墅</option>
+                    <option value="一室一卫">一室一卫</option>
+                </select>
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">提交</button>
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">提交发布</button>
             </div>
         </div>
     </form>
@@ -68,13 +66,13 @@
         //监听提交
         form.on('submit(demo1)', function(data){
             layui.jquery.ajax({
-                url:'rent-out_servlet',//
+                url:'/rent/save',//
                 type:'post',
                 dataType:'text',
                 data:data.field,
                 success:function(data){
-                    if (data == 1) {
-                        layer.msg('提交成功');
+                    if (data == "1") {
+                        layer.msg('发布成功');
                         ///location.href = "login.html";
                     }else {
                         layer.msg('提交失败');

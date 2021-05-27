@@ -20,7 +20,6 @@
             <li class="layui-nav-item layui-hide-xs"><a href="menu.jsp">首 页</a></li>
             <li class="layui-nav-item layui-hide-xs"><a href="rent-in-msg.jsp">求租信息</a></li>
             <li class="layui-nav-item layui-hide-xs"><a href="rent-out-msg.jsp">出租信息</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="search.jsp">按关键字查询</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">留言板</a>
                 <dl class="layui-nav-child">
@@ -38,7 +37,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="person.jsp">个人中心</a></dd>
-                    <dd><a href="sign_out.jsp">退出登录</a></dd>
+                    <dd><a href="/user/logout">退出登录</a></dd>
                 </dl>
             </li>
         </ul>
@@ -51,14 +50,14 @@
                     <a class="" href="javascript:;">历史记录</a>
                     <dl class="layui-nav-child">
                         <%--三中类型：已是中介，不是中介，正在申请  --%>
-                        <dd><a href="javascript:;">是否已申请</a></dd>
                         <dd><a href="rented-in.jsp">已发布的租房信息</a></dd>
                         <dd><a href="rented-out.jsp">已发布的出租信息</a></dd>
+                        <dd><a href="rented-out.jsp">已租房屋信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="apply.jsp">申请认证</a></li>
-                <li class="layui-nav-item"><a href="rent-in.jsp">我要租房</a></li>
-                <li class="layui-nav-item"><a href="rent-out.jsp">我要出租</a></li>
+                <li class="layui-nav-item"><a href="rent-in.jsp">发布求租信息</a></li>
+                <li class="layui-nav-item"><a href="rent-out.jsp">发布出租信息</a></li>
 
             </ul>
         </div>
@@ -74,33 +73,6 @@
         底部固定区域
     </div>
 </div>
-<script src="layui/layui.js"></script>
-<script>
-    //JS
-    layui.use(['element', 'layer', 'util'], function(){
-        var element = layui.element
-            ,layer = layui.layer
-            ,util = layui.util
-            ,$ = layui.$;
 
-        //头部事件
-        util.event('lay-header-event', {
-            //左侧菜单事件
-            menuLeft: function(othis){
-                layer.msg('展开左侧菜单的操作', {icon: 0});
-            }
-            ,menuRight: function(){
-                layer.open({
-                    type: 1
-                    ,content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
-                    ,area: ['260px', '100%']
-                    ,offset: 'rt' //右上角
-                    ,anim: 5
-                    ,shadeClose: true
-                });
-            }
-        });
-    });
-</script>
 </body>
 </html>

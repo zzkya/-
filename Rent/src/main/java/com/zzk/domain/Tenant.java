@@ -8,7 +8,7 @@ public class Tenant {
     String location;
     int expectedPrice;
     String expectedInformation;
-    Date time;
+    String time;
 
     public String getLocation() {
         return location;
@@ -50,11 +50,11 @@ public class Tenant {
         this.expectedInformation = expectedInformation;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

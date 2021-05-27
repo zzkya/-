@@ -13,15 +13,31 @@
     </select>
 
     <select id="findAll2" resultType="rent">
-        select * from rent
+        select * from rent where mark IS NULL
     </select>
 
     <select id="findByUser" resultType="rent">
         select * from rent where username='${username}'
     </select>
-    
+
     <select id="findByLocation" resultType="rent">
-        select * from rent where location='#{location}'
+        select * from rent where location=#{location} and mark is NULL
+    </select>
+
+    <delete id="del">
+        delete from rent where id=#{id}
+    </delete>
+
+    <update id="change">
+        update rent set expectedPrice=#{price} where id=#{id}
+    </update>
+
+    <update id="rented">
+        update rent set mark=#{username} where id=#{id}
+    </update>
+
+    <select id="findByMark" resultType="rent">
+        select * from rent where mark=#{username}
     </select>
 
 </mapper>

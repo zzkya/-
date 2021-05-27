@@ -39,4 +39,24 @@ public class RentServiceImpl implements RentService {
     public List<Rent> findByUser(String username) {
         return rentMapper.findByUser(username);
     }
+
+    @Override
+    public void del(int id) {
+        rentMapper.del(id);
+    }
+
+    @Override
+    public void change(int id, int price) {
+        rentMapper.change(id,price);
+    }
+
+    @Override
+    public void rented(int id,String username){
+        rentMapper.rented(id, username);
+    }
+
+    @Override
+    public List<Rent> findByMark(String username){
+        return rentMapper.findByMark(username);
+    }
 }

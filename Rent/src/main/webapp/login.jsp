@@ -2,6 +2,7 @@
 登录页面
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +46,12 @@
                 dataType:'text',
                 type:'get',
                 success:function (data) {
-                    if (data == 1){
+                    if (data == "1"){
+                        location.href = "admin.jsp";//管理员
+                    }else if(data == "2" || data == "3"){
                         location.href = "menu.jsp";
-                    }else{
+                    }
+                    else{
                         layer.msg('登录名或密码错误');
                     }
                 }

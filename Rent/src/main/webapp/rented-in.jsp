@@ -3,7 +3,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="layout.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>已发布的求租信息</title>
@@ -42,12 +41,12 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'username', title: '用户名', width:80}
-                    ,{field: 'location', title: '城市', width:80}
-                    ,{field: 'expectedPrice', title: '预期价格', width: 177,edit: 'text', sort: true}
-                    ,{field: 'expectedInformation', title: '房型', width: 80}
-                    ,{field: 'time', title: '发布时间', width: 80}
+                    {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
+                    ,{field: 'username', title: '用户名', width:100}
+                    ,{field: 'location', title: '城市', width:100}
+                    ,{field: 'expectedPrice', title: '预期价格', width: 180,edit: 'text', sort: true}
+                    ,{field: 'expectedInformation', title: '期望房型', width: 180}
+                    ,{field: 'time', title: '发布时间', width: 180}
                     ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                 ]]
             });
@@ -64,7 +63,6 @@
                 var data = obj.data;
                 if(obj.event === 'del'){
                     layer.confirm('真的删除行么', function(index){
-
                         $.ajax({
                             url: "/tenant/del",
                             type: "POST",

@@ -133,7 +133,7 @@
                     });
                 }
             })
-            return true;
+            return false;
         })
     });
 </script>

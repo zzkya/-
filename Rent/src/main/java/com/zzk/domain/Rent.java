@@ -8,8 +8,8 @@ public class Rent {
     String location;
     int price;
     String information;
-    int mark;
-    Date time;
+    String mark;
+    String time;
 
     public int getId() {
         return id;
@@ -51,19 +51,19 @@ public class Rent {
         this.information = information;
     }
 
-    public int getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(int mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -22,7 +22,7 @@ public class UserController {
     @ResponseBody
     public String save(User user){
         userService.save(user);
-        user.setAuth(2);
+        user.setAuth("2");
         System.out.println(user);
         return "1";
     }
@@ -34,13 +34,14 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public int login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
+    public String login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
         //System.out.println(username + " " + password);
         httpSession.setAttribute("username",username);
         User user = userService.ifExist(username, password);
-        if(user==null) return 0;
-        httpSession.setAttribute("auth",user.getAuth());
-        return 1;
+        System.out.println(user);
+        if(user==null) return "0";
+//        httpSession.setAttribute("auth",user.getAuth());
+        return user.getAuth();
     }
 
     @RequestMapping("/checkUser")
@@ -53,7 +54,7 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
-        return "/WEB-INF/login.jsp";
+        return "redirect:/login.jsp";
     }
 
     @RequestMapping(value = "/userCenter",produces = {"application/json;charset=UTF-8"})

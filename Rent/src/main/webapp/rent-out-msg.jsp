@@ -6,6 +6,8 @@
 <html>
 <head>
     <title>出租信息</title>
+    <link rel="stylesheet" href="./layui/css/layui.css"  media="all">
+    <script src="./layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
 <div class="layui-body">
@@ -13,18 +15,20 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>出租信息</legend>
     </fieldset>
-
     <div class="demoTable">
         搜索location：
         <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+            <input class="layui-input" name="location" id="location" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload">搜索</button>
     </div>
 
-    <table class="layui-hide" id="RentOut" ></table>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">我要了</a>
+    </script>
 
-    <script src="layui/layui.js"></script>
+    <table class="layui-hide" id="RentOut" lay-filter="RentOut"></table>
+
     <script>
         layui.use('table', function(){
             var table = layui.table;
@@ -40,28 +44,54 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'username', title: '用户名', width:80}
-                    ,{field: 'location', title: '城市', width:80}
-                    ,{field: 'price', title: '价格', width: 177}
-                    ,{field: 'information', title: '介绍', width: 80}
-                    ,{field: 'time', title: '发布时间', width: 80, sort: true}
+                    {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
+                    ,{field: 'username', title: '用户名', width:100}
+                    ,{field: 'location', title: '城市', width:100}
+                    ,{field: 'price', title: '价格', width: 100, sort: true}
+                    ,{field: 'information', title: '房型', width: 160}
+                    ,{field: 'time', title: '发布时间', width: 180}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                 ]]
                 ,id:'testReload'
             });
+
+            //监听行工具事件
+            table.on('tool(RentOut)', function(obj){
+                var data = obj.data;
+                //console.log(obj)
+                if(obj.event === 'del'){
+                    layer.confirm('您确定要租吗？', function(index){
+                        $.ajax({
+                            url: "/rent/rented",
+                            type: "POST",
+                            data: {id:data.id},
+                            success: function (msg) {
+                                if (msg == "1") {
+                                    obj.del();
+                                    layer.close(index);
+                                    layer.msg("租房成功", {icon: 6});
+                                } else {
+                                    layer.msg("租房失败", {icon: 5});
+                                }
+                            }
+                        });
+                        return false;
+                    });
+                }
+            });
+
+            //搜索框的实现
             var $ = layui.$, active = {
                 reload: function(){
-                    var demoReload = $('#demoReload');
-
+                    var location = $('#location');
+                    console.log(location.val())
                     //执行重载
                     table.reload('testReload', {
                         page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,where: {
-                            key: {
-                                id: demoReload.val()
-                            }
+                               location : location.val()
                         }
                     });
                 }

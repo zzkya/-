@@ -15,4 +15,8 @@ public interface TenantMapper {
     public List<Tenant> findByLocation(@Param("location")String location);
 
     public List<Tenant> findByUser(@Param("username")String username);
+
+    public void change(@Param("id")int id,@Param("price")int price);
+
+    public void del(@Param("id")int id);
 }

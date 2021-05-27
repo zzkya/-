@@ -16,4 +16,12 @@ public interface RentMapper {
     public List<Rent> findByUser(@Param("username")String username);
 
     public List<Rent> findAll2();
+
+    public void del(@Param("id")int id);
+
+    public void change(@Param("id")int id,@Param("price")int price);
+
+    public void rented(@Param("id")int id,@Param("username")String username);
+
+    public List<Rent> findByMark(@Param("username")String username);
 }

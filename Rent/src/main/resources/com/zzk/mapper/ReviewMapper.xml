@@ -4,18 +4,29 @@
 <mapper namespace="com.zzk.mapper.ReviewMapper">
 
     <insert id="save" parameterType="review">
-        insert into user values
-        (#{username},#{apply})
+        insert into review values
+        (#{username},#{apply},#{mark})
     </insert>
 
-    <select id="findAll" resultType="review">
-        select * from review
+    <select id="findByUser" resultType="review">
+        select * from review where username=#{username}
     </select>
 
-    <delete id="del">
-        delete * from review where username=#{username}
-    </delete>
+    <select id="findAll" resultType="review">
+        select * from review where mark=0
+    </select>
 
+    <update id="del">
+        delete from review where username=#{username}
+    </update>
+
+    <update id="changeMark">
+        update review set mark = 1 where username=#{username}
+    </update>
+
+    <select id="findAllMark" resultType="review">
+        select * from review where mark=1
+    </select>
 
 
 

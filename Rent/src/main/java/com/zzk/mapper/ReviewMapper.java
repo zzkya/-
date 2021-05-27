@@ -10,5 +10,11 @@ public interface ReviewMapper {
 
     public List<Review> findAll();
 
+    public List<Review> findAllMark();
+
+    public List<Review> findByUser(@Param("username")String username);
+
     public void del(@Param("username")String username);
+
+    public void changeMark(@Param("username")String username);
 }

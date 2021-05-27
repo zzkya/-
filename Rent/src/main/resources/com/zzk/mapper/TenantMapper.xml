@@ -17,11 +17,19 @@
     </select>
 
     <select id="findByLocation" resultType="tenant">
-        select * from tenant where location='#{location}';
+        select * from tenant where location=#{location}
     </select>
 
     <select id="findByUser" resultType="tenant">
         select * from tenant where username='${username}'
     </select>
+
+    <update id="change">
+        update tenant set expectedPrice=#{price} where id=#{id}
+    </update>
+
+    <delete id="del">
+        delete from tenant where id=#{id}
+    </delete>
 
 </mapper>

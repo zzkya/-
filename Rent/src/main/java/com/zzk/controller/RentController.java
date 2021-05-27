@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,36 +29,32 @@ public class RentController {
 
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String save(Rent account, HttpSession httpSession){
+    public String save(Rent rent, HttpSession httpSession){
         String username = (String) httpSession.getAttribute("username");
-        account.setUsername(username);
-        System.out.println(account);
-        rentService.save(account);
-        return "保存成功";
+        rent.setUsername(username);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        rent.setTime(df.format(new Date()));
+        System.out.println(rent);
+        rentService.save(rent);
+        return "1";
     }
 
     @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String findAll(@RequestParam("page")String page,@RequestParam("limit")String limit) throws JsonProcessingException {
+    public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,String location) throws JsonProcessingException {
         int start=Integer.parseInt(page);
         int pageSize=Integer.parseInt(limit);
-        List<Rent> rentList = rentService.findAll((start-1)*pageSize,pageSize);
-        List<Rent> rentList2 = rentService.findAll2();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(rentList);
-        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList2.size()+",\"data\":"+json+"}";
-        System.out.println(books);
-        return books;
-    }
-
-    @RequestMapping("/findByLocation")
-    @ResponseBody
-    public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,@RequestParam("location")  String location) throws JsonProcessingException {
-        int start=Integer.parseInt(page);
-        int pageSize=Integer.parseInt(limit);
-        List<Rent> rentList = rentService.findByLocation(location);
-        PageHelper.startPage(start,pageSize);
-        List<Rent> rentList2 = rentService.findByLocation(location);
+        List<Rent> rentList,rentList2;
+        if(location==null){
+            rentList = rentService.findAll2();
+            PageHelper.startPage(start,pageSize);
+            rentList2 = rentService.findAll2();
+        }else{
+            System.out.println(location);
+            rentList = rentService.findByLocation(location);
+            PageHelper.startPage(start,pageSize);
+            rentList2 = rentService.findByLocation(location);
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(rentList2);
         String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
@@ -69,15 +67,54 @@ public class RentController {
     public String findByUser(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
         int start=Integer.parseInt(page);
         int pageSize=Integer.parseInt(limit);
+        List<Rent> rentList,rentList2;
         String username = (String) httpSession.getAttribute("username");
-        List<Rent> rentList = rentService.findByUser(username);
+        rentList = rentService.findByUser(username);
         PageHelper.startPage(start,pageSize);
-        List<Rent> rentList2 = rentService.findByUser(username);
+        rentList2 = rentService.findByUser(username);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(rentList2);
         String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
         System.out.println(books);
         return books;
+    }
+
+    @RequestMapping(value = "/findByMark",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String findByMark(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+        List<Rent> rentList,rentList2;
+        String username = (String) httpSession.getAttribute("username");
+        rentList = rentService.findByMark(username);
+        PageHelper.startPage(start,pageSize);
+        rentList2 = rentService.findByMark(username);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(rentList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
+    }
+    @RequestMapping(value = "/changePrice",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String changePrice(@RequestParam("expectedPrice")String expectedPrice,@RequestParam("id")String index){
+        rentService.change(Integer.parseInt(index),Integer.parseInt(expectedPrice));
+        return "1";
+    }
+
+    @RequestMapping(value = "/rented",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String rented(@RequestParam("id")String index,HttpSession httpSession){
+        String username = (String) httpSession.getAttribute("username");
+        rentService.rented(Integer.parseInt(index),username);
+        return "1";
+    }
+
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public String del(@RequestParam("id")int id){
+        rentService.del(id);
+        return "1";
     }
 
 }

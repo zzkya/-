@@ -10,6 +10,14 @@ public interface ReviewService {
 
     public List<Review> findAll();
 
+    public List<Review> findAllMark();
+
     public void del(String username);
+
+
+    public void changeMark(String username);
+
+    public List<Review> findByUser(String username);
+
 
 }

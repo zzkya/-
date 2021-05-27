@@ -8,7 +8,7 @@ public class User {
     String sex;
     int age;
     String phone;
-    int auth;
+    String auth;
 
     public String getUsername() {
         return username;
@@ -66,11 +66,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int getAuth() {
+    public String getAuth() {
         return auth;
     }
 
-    public void setAuth(int auth) {
+    public void setAuth(String auth) {
         this.auth = auth;
     }
 

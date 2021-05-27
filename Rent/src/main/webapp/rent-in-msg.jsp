@@ -3,7 +3,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="layout.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>求租信息</title>
@@ -20,12 +19,12 @@
     <div class="demoTable">
         搜索location：
         <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+            <input class="layui-input" name="location" id="location" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload">搜索</button>
     </div>
 
-    <table id="RentIn" ></table>
+    <table id="RentIn"  ></table>
 
     <script src="layui/layui.js"></script>
     <script>
@@ -45,28 +44,26 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'username', title: '用户名', width:80}
-                    ,{field: 'location', title: '城市', width:80}
-                    ,{field: 'expectedPrice', title: '预期价格', width: 177}
-                    ,{field: 'expectedInformation', title: '房型', width: 80}
-                    ,{field: 'time', title: '发布时间', width: 80, sort: true}
+                    {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
+                    ,{field: 'username', title: '用户名', width:100}
+                    ,{field: 'location', title: '城市', width:100}
+                    ,{field: 'expectedPrice', title: '预期价格', width: 120,sort: true}
+                    ,{field: 'expectedInformation', title: '房型', width: 160}
+                    ,{field: 'time', title: '发布时间', width: 180}
                 ]]
                 ,id:'testReload'
             });
+            //搜索框的实现
             var $ = layui.$, active = {
                 reload: function(){
-                    var demoReload = $('#demoReload');
-
+                    var location = $('#location');
                     //执行重载
                     table.reload('testReload', {
                         page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,where: {
-                            key: {
-                                id: demoReload.val()
-                            }
+                            location : location.val()
                         }
                     });
                 }

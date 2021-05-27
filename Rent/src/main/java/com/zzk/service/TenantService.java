@@ -15,4 +15,8 @@ public interface TenantService {
     public List<Tenant> findByLocation(String location);
 
     public List<Tenant> findByUser(String username);
+
+    public void change(int id,int price);
+
+    public void del(int id);
 }

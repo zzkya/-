@@ -25,7 +25,22 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<Review> findAllMark() {
+        return reviewMapper.findAllMark();
+    }
+
+    @Override
     public void del(String username) {
         reviewMapper.del(username);
+    }
+
+    @Override
+    public void changeMark(String username) {
+        reviewMapper.changeMark(username);
+    }
+
+    @Override
+    public List<Review> findByUser(String username) {
+        return reviewMapper.findByUser(username);
     }
 }
