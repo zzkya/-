@@ -33,7 +33,7 @@
 
             <dl class="layui-nav-child">
                 <dd><a href="person.jsp">个人中心</a></dd>
-                <dd><a href="sign_out.jsp">退出登录</a></dd>
+                <dd><a href="/user/logout">退出登录</a></dd>
             </dl>
         </li>
     </ul>
