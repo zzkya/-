@@ -25,6 +25,23 @@
 
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 对静态资源不采取拦截 -->
+            <mvc:exclude-mapping path="/**/*.js" />
+            <mvc:exclude-mapping path="/**/*.css" />
+            <mvc:exclude-mapping path="/**/*.png" />
+            <mvc:exclude-mapping path="/**/*.gif" />
+            <mvc:exclude-mapping path="/**/*.jpg" />
+            <mvc:exclude-mapping path="/**/*.jpeg" />
+            <mvc:exclude-mapping path="/**/iconfont.*" />
+            <mvc:exclude-mapping path="/user/login" />
+            <mvc:exclude-mapping path="/login.jsp" />
+            <bean class="com.zzk.interceptors.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
     <!-- 数据源-->
     <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
 
