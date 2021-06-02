@@ -2,7 +2,7 @@
 登录页面
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +11,28 @@
     <title>登录页</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="layui/css/style.css">
+    <link rel="stylesheet" href="layui/css/icon_input.css">
 </head>
 <body>
 
 <div class="login-main">
     <header class="layui-elip">登录页</header>
     <form class="layui-form">
+
         <div class="layui-input-inline">
-            <input type="text" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
-                   class="layui-input">
+            <div class="icon-input">
+                <i class="layui-icon layui-icon-username"></i>
+                <input type="text" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
+                       class="layui-input">
+            </div>
         </div>
+
         <div class="layui-input-inline">
-            <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
-                   class="layui-input">
+            <div class="icon-input">
+                <i class="layui-icon layui-icon-password"></i>
+                <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
+                       class="layui-input">
+            </div>
         </div>
         <div class="layui-input-inline login-btn">
             <button lay-submit lay-filter="login" class="layui-btn">登录</button>

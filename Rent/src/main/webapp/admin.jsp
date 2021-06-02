@@ -32,7 +32,6 @@
                 table.render({
                     elem: '#Review'
                     ,url: '/review/findAll' //数据接口
-                    //,url:'table.json'
                     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
                         //,curr: 5 //设定初始在第 5 页
@@ -43,7 +42,7 @@
                     ,cols: [[ //表头
                         {field: 'username', title: '用户名', width:100}
                         ,{field: 'apply', title: '申请材料', width:500}
-                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:300}
                     ]]
                 });
                 //监听单元格编辑

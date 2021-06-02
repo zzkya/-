@@ -24,6 +24,7 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewMapper.findAll();
     }
 
+
     @Override
     public List<Review> findAllMark() {
         return reviewMapper.findAllMark();
@@ -42,5 +43,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> findByUser(String username) {
         return reviewMapper.findByUser(username);
+    }
+
+    @Override
+    public List<Review> findAllMarkByUsername(String username) {
+        return reviewMapper.findAllMarkByUsername(username);
     }
 }

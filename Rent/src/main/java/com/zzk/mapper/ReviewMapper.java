@@ -12,9 +12,13 @@ public interface ReviewMapper {
 
     public List<Review> findAllMark();
 
+    public List<Review> findAllRent();
+
     public List<Review> findByUser(@Param("username")String username);
 
     public void del(@Param("username")String username);
 
     public void changeMark(@Param("username")String username);
+
+    List<Review> findAllMarkByUsername(@Param("username")String username);
 }

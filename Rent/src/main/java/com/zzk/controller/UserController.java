@@ -3,6 +3,8 @@ package com.zzk.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
+import com.zzk.domain.Review;
 import com.zzk.domain.User;
 import com.zzk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -74,5 +78,33 @@ public class UserController {
         System.out.println(user);
         userService.change(user);
         return 1;
+    }
+
+    @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String findAll(@RequestParam("page")String page,@RequestParam("limit")String limit,String username) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+        List<User> userList,userList2;
+        String books = null;
+        if(username==null||"".equals(username)){
+            userList = userService.findAll();
+            PageHelper.startPage(start,pageSize);
+            userList2 = userService.findAll();
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(userList2);
+            books="{\"code\":0,\"msg\":\"ok\",\"count\":"+userList.size()+",\"data\":"+json+"}";
+        }
+        else{
+            User user = userService.ifUser(username);
+            System.out.println(user);
+            List<User> users = new ArrayList<User>();
+            users.add(user);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(users);
+            books="{\"code\":0,\"msg\":\"ok\",\"count\":"+1+",\"data\":"+json+"}";
+        }
+        System.out.println(books);
+        return books;
     }
 }

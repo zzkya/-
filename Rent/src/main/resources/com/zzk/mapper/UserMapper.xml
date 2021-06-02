@@ -8,6 +8,10 @@
         (#{username},#{password},#{name},#{id},#{sex},#{age},#{phone},#{auth})
     </insert>
 
+    <select id="findAll" resultType="user">
+        select * from user
+    </select>
+
     <select id="ifExist" resultType="user">
         select * from user where username=#{username} and password=#{password};
     </select>

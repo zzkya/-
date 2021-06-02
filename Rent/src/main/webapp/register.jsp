@@ -108,8 +108,6 @@
         $('#user').blur(function() {
             var user = $(this).val();
 
-            //alert(user);
-            //检查该用户名是否可用！
             $.ajax({
                 url:'/user/checkUser',
                 type:'post',
@@ -117,7 +115,7 @@
                 data:{username:user},
                 //验证用户名是否可用
                 success:function(data){
-                    if (data == 1) {
+                    if (data == "1") {
                         $('#ri').removeAttr('hidden');
                         $('#wr').attr('hidden','hidden');
                     } else {

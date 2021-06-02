@@ -6,6 +6,8 @@ import com.zzk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
@@ -36,5 +38,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void change(User user) {
         userMapper.change(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
     }
 }

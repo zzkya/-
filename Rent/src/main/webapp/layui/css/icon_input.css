@@ -1,0 +1,7 @@
+.icon-input{
+    display:flex;border: 1px solid #D2D2D2!important;background-color: #fff;height: 38px;line-height: 38px;padding: 0px 19px;
+    border-radius: 19px;
+}
+.layui-input {
+    border-style: none;
+}

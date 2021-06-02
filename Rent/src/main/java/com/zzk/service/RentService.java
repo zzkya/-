@@ -13,6 +13,8 @@ public interface RentService {
 
     public List<Rent> findAll2();
 
+    public List<Rent> findAllRent();
+
     public List<Rent> findByLocation(String location);
 
     public List<Rent> findByUser(String username);

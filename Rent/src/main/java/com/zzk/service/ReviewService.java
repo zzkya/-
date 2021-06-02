@@ -19,5 +19,5 @@ public interface ReviewService {
 
     public List<Review> findByUser(String username);
 
-
+    List<Review> findAllMarkByUsername(String username);
 }

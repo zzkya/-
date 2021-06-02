@@ -17,6 +17,8 @@ public interface RentMapper {
 
     public List<Rent> findAll2();
 
+    public List<Rent> findAllRent();
+
     public void del(@Param("id")int id);
 
     public void change(@Param("id")int id,@Param("price")int price);

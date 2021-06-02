@@ -3,6 +3,8 @@ package com.zzk.mapper;
 import com.zzk.domain.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     public void save(User user);
 
@@ -13,4 +15,6 @@ public interface UserMapper {
     public void changeAuth(@Param("auth")int auth,@Param("username")String username);
 
     public void change(User user);
+
+    List<User> findAll();
 }

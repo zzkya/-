@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.zzk.domain.Rent;
 import com.zzk.domain.Review;
+import com.zzk.domain.Tenant;
+import com.zzk.service.RentService;
 import com.zzk.service.ReviewService;
+import com.zzk.service.TenantService;
 import com.zzk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,12 @@ public class ReviewController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RentService rentService;
+
+    @Autowired
+    TenantService tenantService;
+
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Review review, HttpSession httpSession){
@@ -41,7 +50,8 @@ public class ReviewController {
         return "1";
     }
 
-    @RequestMapping("/findAll")
+    //未审核信息
+    @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findAll(@RequestParam("page")String page,@RequestParam("limit")String limit) throws JsonProcessingException {
         int start=Integer.parseInt(page);
@@ -57,15 +67,24 @@ public class ReviewController {
         return books;
     }
 
-    @RequestMapping("/findAllMark")
+    //已审核信息
+    @RequestMapping(value = "/findAllMark",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String findAllMark(@RequestParam("page")String page,@RequestParam("limit")String limit) throws JsonProcessingException {
+    public String findAllMark(@RequestParam("page")String page,@RequestParam("limit")String limit,String username) throws JsonProcessingException {
         int start=Integer.parseInt(page);
         int pageSize=Integer.parseInt(limit);
+
         List<Review> reviewList,reviewList2;
-        reviewList = reviewService.findAllMark();
-        PageHelper.startPage(start,pageSize);
-        reviewList2 = reviewService.findAllMark();
+        if(username==null||"".equals(username)){
+            reviewList = reviewService.findAllMark();
+            PageHelper.startPage(start,pageSize);
+            reviewList2 = reviewService.findAllMark();
+        }
+        else{
+            reviewList = reviewService.findAllMarkByUsername(username);
+            PageHelper.startPage(start,pageSize);
+            reviewList2 = reviewService.findAllMarkByUsername(username);
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(reviewList2);
         String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+reviewList.size()+",\"data\":"+json+"}";
@@ -86,4 +105,51 @@ public class ReviewController {
         userService.changeAuth(3,username);
     }
 
+    @RequestMapping(value = "/listRentOut",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String ListRentOut(@RequestParam("page")String page,@RequestParam("limit")String limit,String username) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+
+        List<Rent> rentList,rentList2;
+        if(username==null||"".equals(username)){
+            rentList = rentService.findAllRent();
+            PageHelper.startPage(start,pageSize);
+            rentList2 = rentService.findAllRent();
+        }
+        else{
+            rentList = rentService.findByUser(username);
+            PageHelper.startPage(start,pageSize);
+            rentList2 = rentService.findByUser(username);
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(rentList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+rentList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
+    }
+
+    @RequestMapping(value = "/listRentIn",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String ListRentIn(@RequestParam("page")String page,@RequestParam("limit")String limit,String username) throws JsonProcessingException {
+        int start=Integer.parseInt(page);
+        int pageSize=Integer.parseInt(limit);
+
+        List<Tenant> tenantList,tenantList2;
+        if(username==null||"".equals(username)){
+            tenantList = tenantService.findAll2();
+            PageHelper.startPage(start,pageSize);
+            tenantList2 = tenantService.findAll2();
+        }
+        else{
+            tenantList = tenantService.findByUser(username);
+            PageHelper.startPage(start,pageSize);
+            tenantList2 = tenantService.findByUser(username);
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(tenantList2);
+        String books="{\"code\":0,\"msg\":\"ok\",\"count\":"+tenantList.size()+",\"data\":"+json+"}";
+        System.out.println(books);
+        return books;
+    }
 }

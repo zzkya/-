@@ -12,6 +12,10 @@
         select * from review where username=#{username}
     </select>
 
+    <select id="findAllMarkByUsername" resultType="review">
+        select * from review where mark=1 and username=#{username}
+    </select>
+
     <select id="findAll" resultType="review">
         select * from review where mark=0
     </select>

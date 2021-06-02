@@ -3,6 +3,8 @@ package com.zzk.service;
 import com.zzk.domain.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserService {
 
     public void save(User user);
@@ -14,4 +16,6 @@ public interface UserService {
     public void changeAuth(int auth,String username);
 
     public void change(User user);
+
+    List<User> findAll();
 }
