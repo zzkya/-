@@ -44,7 +44,7 @@ public class UserController {
         User user = userService.ifExist(username, password);
         System.out.println(user);
         if(user==null) return "0";
-//        httpSession.setAttribute("auth",user.getAuth());
+        httpSession.setAttribute("auth",Integer.parseInt(user.getAuth()));
         return user.getAuth();
     }
 

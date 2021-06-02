@@ -11,7 +11,7 @@
     <script src="./layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>申请认证</legend>
@@ -42,7 +42,7 @@
         //验证该用户是否已经是中介了
         layer.ready(function (){
             layui.jquery.ajax({
-                url:'review/save',//
+                url:'review/check',//
                 dataType:'text',
                 type:'post',
                 success:function (data) {

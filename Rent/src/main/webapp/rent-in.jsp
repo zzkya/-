@@ -11,7 +11,7 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>我要租房</legend>
@@ -22,14 +22,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-block">
-                <input type="text" name="location"  autocomplete="off"  class="layui-input">
+                <input type="text" name="location"  autocomplete="off"  placeholder="请输入地点城市" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">期望价格</label>
             <div class="layui-input-block">
-                <input type="text" name="expectedPrice"  autocomplete="off"  class="layui-input">
+                <input type="text" name="expectedPrice"  autocomplete="off" placeholder="请输入预期价格" class="layui-input">
             </div>
         </div>
 

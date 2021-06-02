@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
 <body>
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>已租房屋信息</legend>
     </fieldset>
@@ -22,7 +22,7 @@
             //第一个实例
             table.render({
                 elem: '#Rented'
-                ,url: '/rent/findByUser' //数据接口
+                ,url: '/rent/findByMark' //数据接口
                 ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
                     //,curr: 5 //设定初始在第 5 页]

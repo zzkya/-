@@ -10,7 +10,7 @@
     <script src="./layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
     <!-- 内容主体区域 -->
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>已发布的出租信息</legend>

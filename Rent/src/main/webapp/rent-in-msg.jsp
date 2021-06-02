@@ -10,18 +10,20 @@
 </head>
 <body>
 <!-- 内容主体区域 -->
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>求租信息</legend>
     </fieldset>
 <%--    搜索框--%>
     <div class="demoTable">
-        搜索location：
+        搜索：
         <div class="layui-inline">
-            <input class="layui-input" name="location" id="location" autocomplete="off">
+            <input class="layui-input" name="location" id="location" autocomplete="off" placeholder="按地区搜索">
         </div>
-        <button class="layui-btn" data-type="reload">搜索</button>
+        <button class="layui-btn" data-type="reload">
+            <i class="layui-icon layui-icon-search"></i> 搜索
+        </button>
     </div>
 
     <table id="RentIn"  ></table>

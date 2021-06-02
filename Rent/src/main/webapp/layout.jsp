@@ -2,6 +2,7 @@
 布局
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,9 @@
                 <a href="javascript:;">
                     <img src="img/person.jpg" class="layui-nav-img">
                     ${sessionScope.username}
+                    <c:if test="${sessionScope.auth==3}">
+                        <i class="layui-icon layui-icon-diamond" style="color: #FFFF00"></i>
+                    </c:if>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="person.jsp">个人中心</a></dd>
@@ -52,7 +56,7 @@
                         <%--三中类型：已是中介，不是中介，正在申请  --%>
                         <dd><a href="rented-in.jsp">已发布的租房信息</a></dd>
                         <dd><a href="rented-out.jsp">已发布的出租信息</a></dd>
-                        <dd><a href="rented-out.jsp">已租房屋信息</a></dd>
+                        <dd><a href="rented.jsp">已租房屋信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="apply.jsp">申请认证</a></li>
@@ -63,10 +67,10 @@
         </div>
     </div>
 
-<%--    <div class="layui-body">--%>
-<%--        <!-- 内容主体区域 -->--%>
-<%--        <div style="padding: 15px;">内容主体区域。记得修改 layui.css 和 js 的路径</div>--%>
-<%--    </div>--%>
+    <%--    <div class="layui-body">--%>
+    <%--        <!-- 内容主体区域 -->--%>
+    <%--        <div style="padding: 15px;">内容主体区域。记得修改 layui.css 和 js 的路径</div>--%>
+    <%--    </div>--%>
 
     <div class="layui-footer " >
         <!-- 底部固定区域 -->

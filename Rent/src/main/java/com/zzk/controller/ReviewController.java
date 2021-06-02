@@ -44,8 +44,17 @@ public class ReviewController {
         review.setMark(0);
         List<Review> byUser = reviewService.findByUser(username);
         //System.out.println(byUser);
-        if(byUser.size()!=0) return "0";
         reviewService.save(review);
+        //System.out.println(byUser);
+        return "1";
+    }
+    @RequestMapping(value = "/check",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String check(Review review, HttpSession httpSession){
+        String username = (String) httpSession.getAttribute("username");
+        List<Review> byUser = reviewService.findByUser(username);
+        //System.out.println(byUser);
+        if(byUser.size()!=0) return "0";
         //System.out.println(byUser);
         return "1";
     }

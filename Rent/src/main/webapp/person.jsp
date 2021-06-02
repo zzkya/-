@@ -10,7 +10,7 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<div class="layui-body">
+<div class="layui-body" style="margin-left: 80px">
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
         <legend>个人信息</legend>
