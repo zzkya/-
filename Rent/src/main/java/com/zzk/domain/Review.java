@@ -1,9 +1,10 @@
 package com.zzk.domain;
 
+//中介审核信息
 public class Review {
-    String username;
-    String apply;
-    int mark;
+    String username;//请求成为中介的用户名
+    String apply;//申请信息
+    int mark;//1是审核通过，0是还未进行审核
 
     public int getMark() {
         return mark;

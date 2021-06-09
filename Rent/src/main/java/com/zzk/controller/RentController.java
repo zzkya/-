@@ -27,6 +27,7 @@ public class RentController {
     @Autowired
     private RentService rentService;
 
+    //用户新增出租信息
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Rent rent, HttpSession httpSession){
@@ -39,6 +40,7 @@ public class RentController {
         return "1";
     }
 
+    //查找所有没被租出去的房屋
     @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,String location) throws JsonProcessingException {
@@ -62,6 +64,7 @@ public class RentController {
         return books;
     }
 
+    //查找该用户已租房屋
     @RequestMapping(value = "/findByUser",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findByUser(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
@@ -117,6 +120,7 @@ public class RentController {
         return "1";
     }
 
+    //删除出租信息
     @RequestMapping(value = "/del")
     @ResponseBody
     public String del(@RequestParam("id")int id){

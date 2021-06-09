@@ -1,14 +1,15 @@
 package com.zzk.domain;
 
+//用户信息
 public class User {
-    String username;
-    String password;
-    String name;
-    String id;
-    String sex;
-    int age;
-    String phone;
-    String auth;
+    String username;//用户名
+    String password;//密码
+    String name;//真实姓名
+    String id;//身份证号
+    String sex;//性别
+    int age;//年龄
+    String phone;//电话号码
+    String auth;//用户权限 1为管理员,2为普通用户,3为管理员
 
     public String getUsername() {
         return username;

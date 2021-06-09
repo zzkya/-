@@ -32,4 +32,5 @@
         delete from tenant where id=#{id}
     </delete>
 
+
 </mapper>

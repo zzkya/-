@@ -2,13 +2,14 @@ package com.zzk.domain;
 
 import java.util.Date;
 
+//求租信息
 public class Tenant {
-    int id;
-    String username;
-    String location;
-    int expectedPrice;
-    String expectedInformation;
-    String time;
+    int id;//信息id
+    String username;//用户名
+    String location;//期望地点
+    int expectedPrice;//期望价格
+    String expectedInformation;//期望房屋信息
+    String time;//发布时间
 
     public String getLocation() {
         return location;

@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //用户注册
     @RequestMapping(value = "/register",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(User user){
@@ -36,6 +37,7 @@ public class UserController {
         return "redirect:/login.jsp";
     }
 
+    //用户登录
     @RequestMapping("/login")
     @ResponseBody
     public String login(@RequestParam("username")  String username, @RequestParam("password") String password, HttpSession httpSession){
@@ -48,6 +50,7 @@ public class UserController {
         return user.getAuth();
     }
 
+    //查看用户名是否被占用
     @RequestMapping("/checkUser")
     @ResponseBody
     public int check(@RequestParam("username")  String username){
@@ -55,12 +58,14 @@ public class UserController {
         return userService.ifUser(username)==null?1:0;
     }
 
+    //登出
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
         return "redirect:/login.jsp";
     }
 
+    //用户信息展示
     @RequestMapping(value = "/userCenter",produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String userCenter(HttpSession httpSession) throws JsonProcessingException {
@@ -72,6 +77,7 @@ public class UserController {
         return json;
     }
 
+    //修改用户信息
     @RequestMapping("/change")
     @ResponseBody
     public int change(User user){
@@ -80,6 +86,7 @@ public class UserController {
         return 1;
     }
 
+    //查找所有用户
     @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findAll(@RequestParam("page")String page,@RequestParam("limit")String limit,String username) throws JsonProcessingException {

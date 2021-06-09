@@ -25,6 +25,7 @@ public class TenantController {
     @Autowired
     private TenantService tenantService;
 
+    //发布求租信息
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Tenant tenant, HttpSession httpSession){
@@ -38,6 +39,7 @@ public class TenantController {
         return "1";
     }
 
+    //查找所有求租信息
     @RequestMapping(value = "/findAll",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findByLocation(@RequestParam("page")String page,@RequestParam("limit")String limit,String location) throws JsonProcessingException {
@@ -60,6 +62,7 @@ public class TenantController {
         return books;
     }
 
+    //查找此用户发布的所有求租信息
     @RequestMapping(value = "/findByUser",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findByUser(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
@@ -77,6 +80,7 @@ public class TenantController {
         return books;
     }
 
+    //修改期望价格
     @RequestMapping(value = "/changePrice",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String changePrice(@RequestParam("expectedPrice")String expectedPrice,@RequestParam("id")String index){
@@ -85,6 +89,7 @@ public class TenantController {
         return "1";
     }
 
+    //删除此条求租信息
     @RequestMapping(value = "/del")
     @ResponseBody
     public String del(@RequestParam("id")int id){
