@@ -56,8 +56,8 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public void rented(int id,String username){
-        rentMapper.rented(id, username);
+    public void rented(int id,String username,String rentedTime){
+        rentMapper.rented(id,username,rentedTime);
     }
 
     @Override

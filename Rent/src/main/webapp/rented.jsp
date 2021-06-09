@@ -36,7 +36,7 @@
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'price', title: '成交价格', width: 120, sort: true}
                     ,{field: 'information', title: '房型', width: 160}
-                    ,{field: 'time', title: '发布时间', width: 180}
+                    ,{field: 'rentedTime', title: '交易时间', width: 180}
                 ]]
             });
         });

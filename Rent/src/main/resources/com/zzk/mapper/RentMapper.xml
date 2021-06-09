@@ -33,11 +33,11 @@
     </delete>
 
     <update id="change">
-        update rent set expectedPrice=#{price} where id=#{id}
+        update rent set price=#{price} where id=#{id}
     </update>
 
     <update id="rented">
-        update rent set mark=#{username} where id=#{id}
+        update rent set mark=#{username} and rentedTime=#{rentedTime} where id=#{id}
     </update>
 
     <select id="findByMark" resultType="rent">

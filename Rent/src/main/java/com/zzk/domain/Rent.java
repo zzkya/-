@@ -2,14 +2,16 @@ package com.zzk.domain;
 
 import java.util.Date;
 
+//租房信息
 public class Rent {
-    int id;
-    String username;
-    String location;
-    int price;
-    String information;
-    String mark;
-    String time;
+    int id;//房屋编号
+    String username;//用户名
+    String location;//房屋所在城市
+    int price;//价格
+    String information;//房屋信息
+    String mark;//如果房屋被租则显示租客姓名，否则为null
+    String time;//出租信息发布时间
+    String rentedTime;//如果房屋被租则显示交易时间，否则为null
 
     public int getId() {
         return id;
@@ -67,6 +69,14 @@ public class Rent {
         this.time = time;
     }
 
+    public String getRentedTime() {
+        return rentedTime;
+    }
+
+    public void setRentedTime(String rentedTime) {
+        this.rentedTime = rentedTime;
+    }
+
     @Override
     public String toString() {
         return "Rent{" +
@@ -75,8 +85,9 @@ public class Rent {
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", information='" + information + '\'' +
-                ", mark=" + mark +
-                ", time=" + time +
+                ", mark='" + mark + '\'' +
+                ", time='" + time + '\'' +
+                ", rentedTime='" + rentedTime + '\'' +
                 '}';
     }
 }

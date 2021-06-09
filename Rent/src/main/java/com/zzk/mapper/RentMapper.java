@@ -23,7 +23,7 @@ public interface RentMapper {
 
     public void change(@Param("id")int id,@Param("price")int price);
 
-    public void rented(@Param("id")int id,@Param("username")String username);
+    public void rented(@Param("id")int id,@Param("username")String username,@Param("rentedTime")String rentedTime);
 
     public List<Rent> findByMark(@Param("username")String username);
 }

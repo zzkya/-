@@ -79,6 +79,7 @@ public class RentController {
         return books;
     }
 
+    //此用户已租房屋列表
     @RequestMapping(value = "/findByMark",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findByMark(@RequestParam("page")String page,@RequestParam("limit")String limit,HttpSession httpSession) throws JsonProcessingException {
@@ -95,18 +96,24 @@ public class RentController {
         System.out.println(books);
         return books;
     }
+
+    //修改房价
     @RequestMapping(value = "/changePrice",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String changePrice(@RequestParam("expectedPrice")String expectedPrice,@RequestParam("id")String index){
-        rentService.change(Integer.parseInt(index),Integer.parseInt(expectedPrice));
+    public String changePrice(@RequestParam("price")String price,@RequestParam("id")String index){
+        rentService.change(Integer.parseInt(index),Integer.parseInt(price));
         return "1";
     }
 
+    //此用户租房
     @RequestMapping(value = "/rented",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String rented(@RequestParam("id")String index,HttpSession httpSession){
         String username = (String) httpSession.getAttribute("username");
-        rentService.rented(Integer.parseInt(index),username);
+        String rentedTime;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        rentedTime=df.format(new Date());
+        rentService.rented(Integer.parseInt(index),username,rentedTime);
         return "1";
     }
 

@@ -23,7 +23,7 @@ public interface RentService {
 
     public void change(int id,int price);
 
-    public void rented(int id,String username);
+    public void rented(int id,String username,String rentedTime);
 
     public List<Rent> findByMark(String username);
 }
