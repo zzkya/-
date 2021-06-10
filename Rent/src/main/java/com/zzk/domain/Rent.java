@@ -1,8 +1,6 @@
 package com.zzk.domain;
 
-import java.util.Date;
-
-//租房信息
+//租房信息表结构
 public class Rent {
     int id;//房屋编号
     String username;//用户名

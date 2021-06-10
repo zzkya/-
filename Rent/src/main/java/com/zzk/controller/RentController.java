@@ -22,8 +22,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/rent")
+//租房模块
 public class RentController {
 
+    //注入租房模块service层
     @Autowired
     private RentService rentService;
 
@@ -31,11 +33,13 @@ public class RentController {
     @RequestMapping(value = "/save",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Rent rent, HttpSession httpSession){
+        //获取存入session中的用户名
         String username = (String) httpSession.getAttribute("username");
         rent.setUsername(username);
+        //将当前时间转换为字符串类型存入数据库中
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         rent.setTime(df.format(new Date()));
-        System.out.println(rent);
+        //调用service层的方法实现信息存储
         rentService.save(rent);
         return "1";
     }
