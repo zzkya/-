@@ -73,7 +73,7 @@
                 success:function(data){
                     if (data == "1") {
                         layer.msg('发布成功');
-                        ///location.href = "login.html";
+                        location.href = "rent-out-msg.jsp";
                     }else {
                         layer.msg('提交失败');
                     }

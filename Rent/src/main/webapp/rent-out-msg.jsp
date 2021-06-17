@@ -31,6 +31,18 @@
 
     <table class="layui-hide" id="RentOut" lay-filter="RentOut"></table>
 
+<%--    <script type="text/html" id="usernameTpl">--%>
+<%--        <a href="/?table-demo-id={{d.id}}" class="layui-table-link" target="_blank">{{ d.username }}</a>--%>
+<%--    </script>--%>
+
+    <script type="text/html" id="usernameTpl">
+        {{#  if(d.user_auth === '3'){ }}
+        <span style="color: #FFaa33 ;">{{ d.username }} (中介)</span>
+        {{#  } else { }}
+        {{ d.username }}
+        {{#  } }}
+    </script>
+
     <script>
         layui.use('table', function(){
             var table = layui.table;
@@ -46,8 +58,9 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
-                    ,{field: 'username', title: '用户名', width:100}
+                    {field: 'id', title: '房屋编号', width:100, sort: true, fixed: 'left'}
+                    ,{field: 'username', title: '用户名', width:100,templet:'#usernameTpl'}
+                    ,{field: 'user_phone', title: '用户手机号', width: 180}
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'price', title: '价格', width: 100, sort: true}
                     ,{field: 'information', title: '房型', width: 160}

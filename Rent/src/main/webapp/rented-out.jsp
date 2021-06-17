@@ -39,13 +39,13 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
+                    {field: 'id', title: '房屋编号', width:120, sort: true, fixed: 'left'}
                     ,{field: 'username', title: '用户名', width:100}
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'price', title: '价格', width: 80, sort: true,edit:'text'}
                     ,{field: 'information', title: '房型', width: 160}
-                    ,{field: 'time', title: '发布时间', width: 180}
-                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                    ,{field: 'time', title: '发布时间', width: 180,sort:true}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150, fixed: 'right'}
                 ]]
             });
             //监听单元格编辑

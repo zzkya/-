@@ -5,19 +5,44 @@
 
     <insert id="save" parameterType="rent">
         insert into rent values
-            (#{id},#{username},#{location},#{price},#{information},#{mark},#{time})
+            (#{id},#{username},#{location},#{price},#{information},#{mark},#{time},#{rentedTime})
     </insert>
 
     <select id="findAll" resultType="rent">
         select * from rent limit #{start},#{limit}
     </select>
 
-    <select id="findAll2" resultType="rent">
-        select * from rent where mark IS NULL
+    <resultMap id="RentMap" type="rent">
+        <!--        手动指定字段与实体属性的映射关系-->
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="location" property="location"></result>
+        <result column="price" property="price"></result>
+        <result column="information" property="information"></result>
+        <result column="time" property="time"></result>
+        <result column="phone" property="user_phone"></result>
+        <result column="auth" property="user_auth"></result>
+    </resultMap>
+
+    <select id="findAll2" resultMap="RentMap">
+        SELECT * FROM rent r,USER u WHERE r.`username`=u.`username` AND mark IS NULL
     </select>
 
-    <select id="findAllRent" resultType="rent">
-        select * from rent
+    <resultMap id="RentMap1" type="rent">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="location" property="location"></result>
+        <result column="price" property="price"></result>
+        <result column="information" property="information"></result>
+        <result column="time" property="time"></result>
+        <result column="rentedTime" property="rentedTime"></result>
+
+        <result column="phone" property="user_phone"></result>
+        <result column="auth" property="user_auth"></result>
+    </resultMap>
+
+    <select id="findAllRent" resultMap="RentMap1">
+        SELECT * FROM rent r,USER u WHERE r.`username`=u.`username`
     </select>
 
     <select id="findByUser" resultType="rent">

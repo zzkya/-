@@ -11,6 +11,26 @@ public class Rent {
     String time;//出租信息发布时间
     String rentedTime;//如果房屋被租则显示交易时间，否则为null
 
+    //描述该用户的信息
+    String user_phone;
+    String user_auth;
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
+
+    public String getUser_auth() {
+        return user_auth;
+    }
+
+    public void setUser_auth(String user_auth) {
+        this.user_auth = user_auth;
+    }
+
     public int getId() {
         return id;
     }
@@ -86,6 +106,8 @@ public class Rent {
                 ", mark='" + mark + '\'' +
                 ", time='" + time + '\'' +
                 ", rentedTime='" + rentedTime + '\'' +
+                ", user_phone='" + user_phone + '\'' +
+                ", user_auth='" + user_auth + '\'' +
                 '}';
     }
 }

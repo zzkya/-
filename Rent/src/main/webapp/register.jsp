@@ -2,13 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>注册页</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="layui/css/style.css">
+    <script src="layui/layui.js"></script>
 <%--    <link rel="icon" href="../frame/static/image/code.png">--%>
 </head>
 <body>
@@ -97,7 +94,7 @@
 </div>
 
 
-<script src="layui/layui.js"></script>
+
 <script type="text/javascript">
     layui.use(['form','jquery','layer'], function () {
         var form   = layui.form;
@@ -119,6 +116,7 @@
                         $('#ri').removeAttr('hidden');
                         $('#wr').attr('hidden','hidden');
                     } else {
+                        console.log(data);
                         $('#wr').removeAttr('hidden');
                         $('#ri').attr('hidden','hidden');
                         layer.msg('当前用户名已被占用! ')
@@ -154,7 +152,21 @@
             };
         });
 
-        //
+        // 验证手机号长度是否正确
+        $('#phone').blur(function() {
+            //var reg = /^[\w]{6,12}$/;
+            var reg = /^1\d{10}$/;
+            if(!($('#phone').val().match(reg))){
+                //layer.msg('请输入合法密码');
+                $('#phwr').removeAttr('hidden');
+                $('#phri').attr('hidden','hidden');
+                layer.msg('手机号的正确长度是11位！');
+            }else {
+                $('#phri').removeAttr('hidden');
+                $('#phwr').attr('hidden','hidden');
+            }
+        });
+
         //添加表单监听事件,提交注册信息
         form.on('submit(sub)', function() {
             $.ajax({
@@ -173,7 +185,7 @@
                 success:function(data){
                     if (data == "1") {
                         layer.msg('注册成功');
-                        //location.href = "login.html";
+                        //location.href = "login.jsp";
                     }else {
                         layer.msg('注册失败');
                     }

@@ -49,6 +49,7 @@
                 ,cols: [[ //表头
                     {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
                     ,{field: 'username', title: '用户名', width:100}
+                    ,{field: 'phone', title: '手机号', width:180}
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'expectedPrice', title: '预期价格', width: 120,sort: true}
                     ,{field: 'expectedInformation', title: '房型', width: 160}

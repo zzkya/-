@@ -38,6 +38,8 @@
             <mvc:exclude-mapping path="/**/iconfont.*" />
             <mvc:exclude-mapping path="/user/login" />
             <mvc:exclude-mapping path="/login.jsp" />
+            <mvc:exclude-mapping path="/user/checkUser" />
+            <mvc:exclude-mapping path="/user/register" />
             <bean class="com.zzk.interceptors.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

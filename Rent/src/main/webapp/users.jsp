@@ -50,7 +50,7 @@
                     {field: 'username', title: '用户名', width:100}
                     ,{field: 'password', title: '密码', width:120}
                     ,{field: 'name', title: '真实姓名', width:120}
-                    ,{field: 'ID', title: '身份证号', width:160}
+                    ,{field: 'id', title: '身份证号', width:160}
                     ,{field: 'sex', title: '性别', width:80}
                     ,{field: 'age', title: '年龄', width:80}
                     ,{field: 'phone', title: '手机号', width:120}

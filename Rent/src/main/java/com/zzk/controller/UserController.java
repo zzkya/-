@@ -26,8 +26,8 @@ public class UserController {
     @RequestMapping(value = "/register",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(User user){
-        userService.save(user);
         user.setAuth("2");
+        userService.save(user);
         System.out.println(user);
         return "1";
     }

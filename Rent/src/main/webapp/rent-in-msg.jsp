@@ -46,7 +46,7 @@
                     ,last: false //不显示尾页
                 }
                 ,cols: [[ //表头
-                    {field: 'id', title: 'ID', width:180, sort: true, fixed: 'left'}
+                    {field: 'id', title: 'ID', width:100, sort: true, fixed: 'left'}
                     ,{field: 'username', title: '用户名', width:100}
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'expectedPrice', title: '预期价格', width: 120,sort: true}

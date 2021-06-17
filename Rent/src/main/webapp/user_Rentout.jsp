@@ -34,6 +34,28 @@
 
     <table id="Users_Rentout" lay-filter="Users_Rentout"></table>
 
+    <script type="text/html" id="usernameTpl">
+        {{#  if(d.user_auth === '3'){ }}
+        <span style="color: #FFaa33 ;">{{ d.username }} (中介)</span>
+        {{#  } else { }}
+        {{ d.username }}
+        {{#  } }}
+    </script>
+
+    <script type="text/html" id="rentedTimeTpl">
+        {{#  if(d.mark === null){ }}
+        <span>未交易</span>
+        {{#  } else { }}
+        {{ d.rentedTime }}
+        {{#  } }}
+    </script>
+    <script type="text/html" id="markTpl">
+        {{#  if(d.mark === null){ }}
+        <span>无</span>
+        {{#  } else { }}
+        {{ d.mark }}
+        {{#  } }}
+    </script>
     <script>
         layui.use('table', function(){
             var table = layui.table;
@@ -48,12 +70,14 @@
                 ,page: true
                 ,cols: [[ //表头
                     {field: 'id', title: '房屋编号', width:180, sort: true, fixed: 'left'}
-                    ,{field: 'username', title: '用户名', width:100}
+                    ,{field: 'username', title: '用户名', width:100,templet:'#usernameTpl'}
+                    ,{field: 'user_phone', title: '手机号', width:180}
                     ,{field: 'location', title: '城市', width:100}
                     ,{field: 'price', title: '价格', width: 100, sort: true}
                     ,{field: 'information', title: '房型', width: 160}
                     ,{field: 'time', title: '发布时间', width: 180}
-                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                    ,{field: 'rentedTime', title: '成交时间', width: 180,templet:'#rentedTimeTpl'}
+                    ,{field: 'mark', title: '租客', width: 100,templet:'#markTpl'}
                 ]],
                 done:function (res,curr,count){
                     exportData=res.data;

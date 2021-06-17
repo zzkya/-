@@ -10,10 +10,8 @@
     <script src="./layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
-
     <div class="layui-body">
-        <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域。记得修改 layui.css 和 js 的路径</div>
+        <img src="img/1.jpg" width="100%" height="100%">
     </div>
 </body>
 </html>
